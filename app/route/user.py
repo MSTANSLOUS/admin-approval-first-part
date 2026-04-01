@@ -23,18 +23,12 @@ def login_page():
     signing_user = User.query.filter_by(user_email=email).first()
 
     if signing_user:
-        print("user exists {}".format(signing_user.user_name))
-
         if not signing_user.is_active:
-            print("user {} not active".format(signing_user.user_name))
             return redirect(url_for('user_bp.home_page'))
-
         else:
-            print("user {} is active".format(signing_user.user_name))
             return redirect(url_for('user_bp.landing_page'))
-
     else:
-        print("user {} does not exist".format(signing_user.user_name))
+
         new_user = User(user_name=name, user_email=email, is_active=False)
         database.session.add(new_user)
         database.session.commit()

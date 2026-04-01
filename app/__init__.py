@@ -17,4 +17,7 @@ def create_app():
     from .route.user import user_bp
     app.register_blueprint(user_bp)
 
+    from .route.admin import admin_bp
+    app.register_blueprint(admin_bp)
+
     return app
